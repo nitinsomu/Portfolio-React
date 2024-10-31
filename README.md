@@ -1,3 +1,3 @@
 # Portfolio Website
 
-## A simple portfolio website using React
+A simple portfolio website using React

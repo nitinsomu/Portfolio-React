@@ -1,0 +1,14 @@
+import React from 'react';
+
+function Introduction() {
+    return (
+        <div>
+          <h1>Hello, I'm Nitin Somu</h1>
+          <p>
+            I'm a Computer Science Engineer with a strong background in data structures, algorithms, and programming. I have experience in Java and Python, focusing on backend development and machine learning. I am passionate about exploring new technologies and contributing to innovative projects.
+          </p>
+        </div>
+      )
+}
+
+export default Introduction;

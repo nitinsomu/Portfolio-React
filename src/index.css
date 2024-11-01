@@ -1,0 +1,75 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+.navbar {
+    display: flex;
+    justify-content: right;
+    background-color: #000;
+    padding: 1rem;
+}
+.navbar ul {
+    list-style: none;
+    display: flex;
+}
+.navbar ul li {
+    margin: 0 0rem;
+}
+
+.navbar ul li a {
+    text-decoration: none;
+    color: #fff; 
+    font-size: 1rem;
+    padding: 1rem 1rem;
+    transition: all 0.3s ease;
+}
+
+.navbar ul li a:hover {
+    background-color: #fff; 
+    color: #000; 
+}
+
+        /* Hero Section Styling */
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background-color: #000; /* Black background */
+            color: #fff; /* White text */
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: #232D3F; /* Accent color for name */
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            line-height: 1.6;
+            color: #ccc; /* Soft white for paragraph */
+        }
+
+        /* Button Styling */
+        .hero .btn {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+            color: #000;
+            background-color: #008170; /* Green accent color */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .hero .btn:hover {
+            background-color: #005B41; /* Darker green on hover */
+        }

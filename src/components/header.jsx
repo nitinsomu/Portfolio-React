@@ -1,12 +1,16 @@
 import React from "react";
-
+import '../index.css' 
 function Header() {
-    return (    <div class="nav-buttons">
-        <button class="nav-button">Experience</button>
-        <button class="nav-button">Projects</button>
-        <button class="nav-button">Links</button>
-        <button class="nav-button">Certifications</button>
-        <button class="nav-button">Contact</button>
-    </div>)
+    return (    
+        <div class="navbar">
+        <ul>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#links">Links</a></li>
+            <li><a href="#certifications">Certifications</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        </div>
+    )
 }
 export default Header;

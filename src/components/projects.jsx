@@ -3,11 +3,13 @@ import Card from "./card";
 
 function Projects() {
     return (
-        <div>
-            <h3>Projects</h3>
-            <Card />
-            <Card />
-            <Card />
+        <div className="container">
+            <h3 className="title">Projects</h3>
+            <div className="card-container">
+                <Card />
+                <Card />
+                <Card />
+            </div>
         </div>
     )
 }

@@ -1,14 +1,16 @@
 import React from "react";
 
 function Footer() {
+    let year = new Date().getFullYear();
     return (
-        <div>
-        <footer>
-            <p>Nitin Somu</p>
-            <p>nitin.somu13@gmail.com</p>
-        </footer>
+        <div className="footer-container">
+            <footer>
+                <div>Nitin Somu</div>
+                <div>nitin.somu13@gmail.com</div>
+                <div>{year}</div>
+            </footer>
         </div>
-    )
+    );
 }
 
 export default Footer;

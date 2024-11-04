@@ -2,10 +2,10 @@ import React from "react";
 
 function Card() {
     return (
-        <div>
+        <div className="card">
             <p>Card Name</p>
         </div>
-    )
+    );
 }
 
 export default Card;

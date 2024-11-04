@@ -3,13 +3,15 @@ import Card from "./card";
 
 function Exp() {
     return (
-        <div>
-            <h3>Experience</h3>
-            <Card />
-            <Card />
-            <Card />
+        <div className="container">
+            <h3 className="title">Experience</h3>
+            <div className="card-container">
+                <Card />
+                <Card />
+                <Card />
+            </div>
         </div>
-    )
+    );
 }
 
 export default Exp;

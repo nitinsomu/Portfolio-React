@@ -1,9 +1,10 @@
 import React from "react";
 
-function Card() {
+function Card(props) {
     return (
         <div className="card">
-            <p>Card Name</p>
+            <p>{props.name}</p>
+            <p>{props.desc}</p>
         </div>
     );
 }

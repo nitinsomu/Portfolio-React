@@ -1,6 +1,6 @@
 import React from "react";
 
-function SmallCard(props) {
+function Smallcard(props) {
     return (
         <div class = "small-card">
             <img src = {props.src} alt = {props.alt} key = {props.key} />
@@ -8,4 +8,4 @@ function SmallCard(props) {
     )
 }
 
-export default SmallCard;
+export default Smallcard;

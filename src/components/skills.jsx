@@ -1,5 +1,5 @@
 import React from "react";
-import SmallCard from "./smallcard";
+import Smallcard from "./smallcard";
 import images from "../assets/images";
 
 function Skills() {
@@ -9,7 +9,7 @@ function Skills() {
             <h3 className="title">Skills</h3>
             <div className="skills-container">
                 {[...Object.entries(images), ...Object.entries(images)].map(([alt, src], index) => (
-                <SmallCard key={index} src={src} alt={alt} />
+                <Smallcard key={index} src={src} alt={alt} />
                 ))}
             </div>
         </section>

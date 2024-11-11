@@ -16,7 +16,7 @@ git clone https://github.com/nitinsomu/Portfolio-React
 cd Portfolio-React
 ```
 
-## Step 3: Install Node from the website
+## Step 3: Install Node
 https://nodejs.org/
 
 ## Step 4: Install Dependencies

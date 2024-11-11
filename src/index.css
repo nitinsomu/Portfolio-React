@@ -37,6 +37,16 @@ html {
     color: black;
 }
 
+.hamburger {
+    display: none;
+    font-size: 1.5rem;
+    color: white;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+
 .hero {
     display: flex;
     align-items: center;
@@ -183,7 +193,7 @@ margin: 5px
 }
 
 .skills-entire-container {
-width: 50vw; /* Center 50% of the viewport width */
+width: 75vw; /* Center 50% of the viewport width */
 overflow: hidden;
 margin: 0 auto; /* Center the container */
 margin-top: 200px;
@@ -227,3 +237,47 @@ text-decoration: none;
         color: white; /* Final color of the text */
     }
 }
+
+@media (max-width: 768px) {
+    .hero h1{
+        font-size: 1.5rem;
+    }
+    .hero p {
+        font-size: 1rem;
+    }
+    .container section h3 {
+        font-size: 1.7rem;
+    }
+    .skills-entire-container section h3 {
+        font-size: 1.7rem;
+    }
+    .navbar ul {
+        display: none; /* Hide regular menu */
+        flex-direction: column;
+        width: 80%;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        background-color: #000;
+        font-size: 0.8rem; /* Increase font-size slightly */
+    }
+
+    /* Show menu when open */
+    .navbar .nav-links.open {
+        display: flex;
+    }
+
+    /* Hamburger button visible on mobile */
+    .hamburger {
+        display: block;
+    }
+
+    .nav-links li {
+        text-align: center;
+        margin: 8px 0; /* Add margin to space out the items vertically */
+        padding: 10px 0; /* Optional padding for better touch targeting */
+        width: 100%;
+    }
+}
+
+

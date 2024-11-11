@@ -1,16 +1,24 @@
 import React from "react";
-import '../index.css' 
+import '../index.css';
+
 function Header() {
-    return (    
-        <div class="navbar">
-        <ul>
-            <li><a href="#experience">Experience</a></li>
-            {/* <li><a href="#projects">Projects</a></li> */}
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#certifications">Certifications</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
+    function scrollToSection(sectionId) {
+        const section = document.getElementById(sectionId);
+        if (section) {
+            section.scrollIntoView({ behavior: 'smooth' });
+        }
+    }
+
+    return (
+        <div className="navbar">
+            <ul>
+                <li><a href="#exp" onClick={() => scrollToSection('exp')}>Experience</a></li>
+                <li><a href="#skills" onClick={() => scrollToSection('skills')}>Skills</a></li>
+                <li><a href="#certs" onClick={() => scrollToSection('certs')}>Certifications</a></li>
+                <li><a href="#contact" onClick={() => scrollToSection('contact')}>Contact</a></li>
+            </ul>
         </div>
-    )
+    );
 }
+
 export default Header;

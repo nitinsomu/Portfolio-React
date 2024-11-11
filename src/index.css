@@ -8,6 +8,9 @@
     color: white;
     background-color: black;
 }
+html {
+    scroll-behavior: smooth;
+}
 .navbar {
     display: flex;
     justify-content: right;
@@ -61,7 +64,7 @@
     margin-top: 2rem;
     padding: 0.75rem 1.5rem;
     font-size: 1rem;
-    background-color: #008170;
+    background-color: #00564b;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -70,17 +73,24 @@
 }
 
 .hero .btn:hover {
-    background-color: #005B41; 
+    background-color: #003023; 
 }
 
 .container {
     text-align: center;
     padding: 20px;
+    margin-top: 200px;
+    margin-bottom: 200px;
+    width: 50vw;
+    margin: 0 auto; /* Center the container */
 }
 
 .title {
-    font-size: 24px;
-    margin-bottom: 20px;
+    font-size: 40px;
+    margin-bottom: 50px;
+    color: white;
+    text-align: left;
+    font-weight: bold;
 }
 
 .card-container {
@@ -95,17 +105,31 @@
     padding: 20px;
     border: 1px solid #ddd;
     border-radius: 8px;
-    background-color: grey;
+    background-color: #003023;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.2s;
+    
+    display: flex;
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center;
 }
+
+.card img {
+    height: 100px;
+    width: 100%; 
+    display: block; 
+    background-color: #003023;
+}
+
+
 
 .card:hover {
     transform: translateX(-5px) translateY(-5px);
 }
 .card p {
     font-size: 18px;
-    background-color: grey;    
+    background-color: #003023;    
 }
 .footer-container {
     background-color: black;
@@ -138,27 +162,68 @@
     animation: 
       typing 3.5s steps(40, end),
       blink-caret .75s step-end infinite;
-  }
+}
   
-  /* The typing effect */
-  @keyframes typing {
-    from { width: 0 }
-    to { width: 100% }
-  }
-  
-  /* The typewriter cursor effect */
-  @keyframes blink-caret {
-    from, to { border-color: transparent }
-    50% { border-color: grey; }
-  }
+/* The typing effect */
+@keyframes typing {
+from { width: 0 }
+to { width: 100% }
+}
 
-  .small-card img {
-    height: 60px;
-    width: 60px;
-    margin: 5px
-  }
+/* The typewriter cursor effect */
+@keyframes blink-caret {
+from, to { border-color: transparent }
+50% { border-color: grey; }
+}
 
-  .skills-container {
-    display: flex;
-    justify-content: center;
-  }
+.small-card img {
+height: 60px;
+width: 60px;
+margin: 5px
+}
+
+.skills-entire-container {
+width: 50vw; /* Center 50% of the viewport width */
+overflow: hidden;
+margin: 0 auto; /* Center the container */
+margin-top: 200px;
+margin-bottom: 200px;
+}
+
+.skills-container {
+display: flex;
+gap: 20px; /* Adjust based on your desired spacing */
+width: max-content; /* Allow container to expand with children */
+animation: scroll 20s linear infinite; /* Speed of scrolling */
+}
+
+@keyframes scroll {
+from {
+    transform: translateX(0);
+}
+to {
+    transform: translateX(-50%); /* Adjusts to move half the duplicated width */
+}
+}
+
+
+.card a{
+text-decoration: none;
+}
+
+
+.info{
+    font-size: 1.2rem;
+    color: transparent; /* Initially make the text invisible */
+    animation: textFadeIn 3s ease-out forwards; /* Apply the animation */
+}
+
+/* Keyframes for the animation */
+@keyframes textFadeIn {
+    0% {
+        color: transparent; /* Initially the text is invisible */
+    }
+    100% {
+        color: white; /* Final color of the text */
+    }
+}

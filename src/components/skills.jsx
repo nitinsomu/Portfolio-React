@@ -4,14 +4,16 @@ import images from "../assets/images";
 
 function Skills() {
     return (
-        <div className="container">
+    <div className="skills-entire-container">
+        <section id="skills">
             <h3 className="title">Skills</h3>
-            <div className="skills-container"> 
-                {Object.entries(images).map(([alt, src], index) => (
-                    <SmallCard key={index} src={src} alt={alt} />
+            <div className="skills-container">
+                {[...Object.entries(images), ...Object.entries(images)].map(([alt, src], index) => (
+                <SmallCard key={index} src={src} alt={alt} />
                 ))}
             </div>
-        </div>
+        </section>
+    </div>
     );
 }
 

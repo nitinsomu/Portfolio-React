@@ -3,6 +3,7 @@ const images = {
     "C++" : "https://icon.icepanel.io/Technology/svg/C%2B%2B-%28CPlusPlus%29.svg",
     "Python" : "https://icon.icepanel.io/Technology/svg/Python.svg",
     "Java" : "https://icon.icepanel.io/Technology/svg/Java.svg",
+    "AWS" : "https://icon.icepanel.io/Technology/png-shadow-512/AWS.png",
     "HTML" : "https://icon.icepanel.io/Technology/svg/HTML5.svg",
     "CSS" : "https://icon.icepanel.io/Technology/svg/CSS3.svg",
     "JavaScript" : "https://icon.icepanel.io/Technology/svg/JavaScript.svg",

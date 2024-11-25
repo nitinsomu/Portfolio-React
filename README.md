@@ -4,7 +4,7 @@ Made this portfolio website using React.
 Deployed on https://nitinsomu.netlify.app/
 
 # Run locally
-Open the terminal and follow these steps.
+Open the terminal and follow these steps to run the react app locally.
 
 ## Step 1: Clone the repository
 ```

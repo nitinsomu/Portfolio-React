@@ -1,24 +1,14 @@
-import { useState } from 'react'
 import React from 'react';
-import Introduction from './components/introduction';
-import Header from './components/header';
-import Exp from './components/exp';
-import Projects from './components/projects';
-import Footer from './components/footer';
-import Cert from './components/cert';
-import Skills from './components/skills';
+import Home from './pages/home';
+import {Routes, Route} from 'react-router-dom'
+import Projects from './pages/projects';
 
 function App() {
   return (
-    <div>
-      <Header/>
-      <Introduction/>
-      <Exp/>
-      {/* <Projects/> */}
-      <Skills />
-      <Cert />
-      <Footer/>
-    </div>
+    <Routes>
+      <Route index element={<Home/>}/>
+      <Route path={'/projects'} element={<Projects/>}/>
+    </Routes>
   )
 }
 

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 function Introduction() {
     return (
@@ -8,7 +9,7 @@ function Introduction() {
           <p className = "info">
               I'm a Computer Science Engineer with a strong background in data structures, algorithms, and programming. I have experience in C++ and Python, focusing on backend development, machine learning and cloud computing. I am passionate about exploring new technologies and contributing to innovative projects.
           </p>
-          <a href="#projects" class="btn">View My Projects</a>
+          <Link to="/projects" class="btn">View My Projects</Link>
       </div>
   </div>
       )

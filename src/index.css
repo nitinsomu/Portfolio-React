@@ -90,7 +90,7 @@ html {
     padding: 20px;
     margin-top: 200px;
     margin-bottom: 200px;
-    width: 50vw;
+    width: 75vw;
     margin: 0 auto; 
 }
 
@@ -125,7 +125,7 @@ html {
 }
 
 .card img {
-    height: 100px;
+    height: 120px;
     width: 100%; 
     display: block; 
     background-color: #003023;

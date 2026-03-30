@@ -7,6 +7,7 @@ function Exp() {
             <section id="exp">
             <h3 className="title">Experience</h3>
             <div className="card-container">
+                <Card name = "Technology Analyst" desc = "Bengaluru" src = "https://upload.wikimedia.org/wikipedia/commons/3/34/Morgan_Stanley_Logo_1.svg" duration = "August 2025 - Present" srcs = "https://www.morganstanley.com/"/>
                 <Card name = "Quality Assurance Intern" desc = "Bengaluru" src = "https://upload.wikimedia.org/wikipedia/commons/7/76/NASDAQ_logo.svg" duration = "January - June 2025" srcs = "https://www.nasdaq.com/"/>
                 <Card name = "Technology Summer Intern" desc = "Pune" src = "https://content.influencemap.org//site/data/001/361/1361555.png" duration = "June - July 2024" srcs = "https://home.barclays/"/>
                 <Card name = "Project Intern" desc = "Bengaluru" src = "https://1000logos.net/wp-content/uploads/2016/10/Bosch-Logo.png" duration = "August - September 2023" srcs = "https://www.bosch.in/"/>

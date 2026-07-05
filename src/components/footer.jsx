@@ -1,27 +1,48 @@
 import React from "react";
+import { motion } from "framer-motion";
 import icons from "../assets/icons";
+import Magnetic from "./Magnetic";
 
 function Footer() {
-    let year = new Date().getFullYear();
+    const year = new Date().getFullYear();
     return (
-        <div className="footer-container contact">
-            <section id="contact">
-                <footer>
-                    <div>nitin.somu13@gmail.com</div>
-                    <div>{year}</div>
-                    <div>
-                        <a href="https://github.com/nitinsomu" target="_blank" rel="noopener noreferrer">
-                                <img className="icon" src={icons.Github} alt="GitHub" />
+        <section id="contact" className="section contact-section">
+            <motion.div
+                className="contact-inner"
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-60px" }}
+                transition={{ duration: 0.6 }}
+            >
+                <p className="contact-kicker">
+                    <span className="section-index">04</span>
+                    <span className="glitch" data-text="Contact">Contact</span>
+                </p>
+                <h2 className="contact-title">Let&apos;s build something.</h2>
+                <p className="contact-sub">
+                    Open to interesting problems, collaborations and good conversations.
+                </p>
+                <div className="contact-mail-wrap">
+                    <Magnetic>
+                        <a href="mailto:nitin.somu13@gmail.com" className="btn btn-primary contact-mail">
+                            nitin.somu13@gmail.com
                         </a>
-                    </div>
-                    <div>
-                        <a href="https://linkedin.com/in/nitinsomu" target="_blank" rel="noopener noreferrer">
-                                <img className="icon" src={icons.Linkedin} alt="LinkedIn" />
-                        </a>
-                    </div>
-                </footer>
-            </section>
-        </div>
+                    </Magnetic>
+                </div>
+                <div className="contact-socials">
+                    <a href="https://github.com/nitinsomu" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                        <img className="icon" src={icons.Github} alt="GitHub" />
+                    </a>
+                    <a href="https://linkedin.com/in/nitinsomu" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                        <img className="icon" src={icons.Linkedin} alt="LinkedIn" />
+                    </a>
+                </div>
+            </motion.div>
+            <footer className="footer-bar">
+                <span>© {year} Nitin Somu</span>
+                <span className="footer-mono">designed &amp; built with react</span>
+            </footer>
+        </section>
     );
 }
 

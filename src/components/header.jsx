@@ -1,33 +1,64 @@
-import React, { useState } from "react";
-import '../index.css';
+import React, { useEffect, useState } from "react";
+import { motion, useScroll, useSpring } from "framer-motion";
+
+const SECTIONS = [
+    { id: "home", label: "Home" },
+    { id: "terminal", label: "Terminal" },
+    { id: "about", label: "About" },
+    { id: "exp", label: "Experience" },
+    { id: "contact", label: "Contact" },
+];
 
 function Header() {
-    const [isOpen, setIsOpen] = useState(false);
+    const [active, setActive] = useState("home");
+    const { scrollYProgress } = useScroll();
+    const progress = useSpring(scrollYProgress, { stiffness: 120, damping: 28 });
 
-    function scrollToSection(sectionId) {
-        const section = document.getElementById(sectionId);
-        if (section) {
-            section.scrollIntoView({ behavior: 'smooth' });
-        }
-        setIsOpen(false); // Close dropdown after clicking
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            (entries) => {
+                for (const entry of entries) {
+                    if (entry.isIntersecting) setActive(entry.target.id);
+                }
+            },
+            { rootMargin: "-40% 0px -55% 0px" }
+        );
+        SECTIONS.forEach(({ id }) => {
+            const el = document.getElementById(id);
+            if (el) observer.observe(el);
+        });
+        return () => observer.disconnect();
+    }, []);
+
+    function go(e, id) {
+        e.preventDefault();
+        document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
     }
 
     return (
-        <div className="navbar">
-            <button
-                className="hamburger"
-                onClick={() => setIsOpen(!isOpen)}
-                aria-label="Toggle navigation"
-            >
-                ☰
-            </button>
-            <ul className={`nav-links ${isOpen ? "open" : ""}`}>
-                <li><a href="#exp" onClick={() => scrollToSection('exp')}>Experience</a></li>
-                <li><a href="#skills" onClick={() => scrollToSection('skills')}>Skills</a></li>
-                <li><a href="#certs" onClick={() => scrollToSection('certs')}>Certifications</a></li>
-                <li><a href="#contact" onClick={() => scrollToSection('contact')}>Contact</a></li>
-            </ul>
-        </div>
+        <>
+            <motion.div className="scroll-progress" style={{ scaleX: progress }} />
+            <nav className="navbar" aria-label="Main navigation">
+                <div className="nav-pill">
+                    <a href="#home" className="nav-logo" onClick={(e) => go(e, "home")}>
+                        <span className="nav-logo-mark">ns</span>
+                    </a>
+                    <ul className="nav-links">
+                        {SECTIONS.map(({ id, label }) => (
+                            <li key={id}>
+                                <a
+                                    href={`#${id}`}
+                                    className={active === id ? "active" : ""}
+                                    onClick={(e) => go(e, id)}
+                                >
+                                    {label}
+                                </a>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+            </nav>
+        </>
     );
 }
 

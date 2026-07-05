@@ -16,7 +16,12 @@ const images = {
     "Kubernetes" : "https://icon.icepanel.io/Technology/svg/Kubernetes.svg",
     "Grafana" : "https://icon.icepanel.io/Technology/svg/Grafana.svg",
     "Prometheus" : "https://icon.icepanel.io/Technology/svg/Prometheus.svg",
-    "Git" : "https://icon.icepanel.io/Technology/svg/Git.svg"
+    "Git" : "https://icon.icepanel.io/Technology/svg/Git.svg",
+    "Claude Agent SDK" : "https://cdn.simpleicons.org/claude",
+    "LlamaIndex" : "https://www.llamaindex.ai/favicon.ico",
+    "Phoenix" : "https://raw.githubusercontent.com/Arize-ai/phoenix/main/app/static/favicon.ico",
+    "DeepEval" : null,
+    "Snowflake Cortex" : "https://cdn.simpleicons.org/snowflake"
 }
 
 export default images;

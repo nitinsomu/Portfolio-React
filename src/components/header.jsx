@@ -12,6 +12,7 @@ const SECTIONS = [
 
 function Header() {
     const [active, setActive] = useState("home");
+    const [menuOpen, setMenuOpen] = useState(false);
     const [theme, setTheme] = useState(() => localStorage.getItem("theme") || "dark");
     const { scrollYProgress } = useScroll();
     const progress = useSpring(scrollYProgress, { stiffness: 120, damping: 28 });
@@ -51,6 +52,7 @@ function Header() {
 
     function go(e, id) {
         e.preventDefault();
+        setMenuOpen(false);
         document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
     }
 
@@ -63,7 +65,7 @@ function Header() {
                     <a href="#home" className="nav-logo" onClick={(e) => go(e, "home")} aria-label="Home">
                         <span className="nav-logo-mark">ns</span>
                     </a>
-                    <ul className="nav-links">
+                    <ul className={`nav-links ${menuOpen ? "open" : ""}`}>
                         {SECTIONS.map(({ id, label }) => (
                             <li key={id}>
                                 <a
@@ -78,7 +80,7 @@ function Header() {
                         ))}
                     </ul>
                     <button
-                        className="nav-iconbtn"
+                        className="nav-iconbtn nav-palette-btn"
                         onClick={() => window.dispatchEvent(new CustomEvent("palette-open"))}
                         aria-label="Open command palette"
                         title="Command palette (Ctrl+K)"
@@ -86,12 +88,20 @@ function Header() {
                         ⌘K
                     </button>
                     <button
-                        className="nav-iconbtn"
+                        className="nav-iconbtn nav-theme-btn"
                         onClick={() => window.dispatchEvent(new CustomEvent("theme-toggle"))}
                         aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} theme`}
                         title="Toggle theme"
                     >
                         {theme === "dark" ? "☀" : "☾"}
+                    </button>
+                    <button
+                        className="nav-iconbtn nav-burger"
+                        onClick={() => setMenuOpen((v) => !v)}
+                        aria-label="Toggle navigation menu"
+                        aria-expanded={menuOpen}
+                    >
+                        {menuOpen ? "✕" : "☰"}
                     </button>
                 </div>
             </nav>

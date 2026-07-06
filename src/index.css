@@ -214,6 +214,11 @@ main, .navbar {
     border-color: var(--border-strong);
 }
 
+.nav-burger {
+    display: none;
+    font-size: 0.95rem;
+}
+
 /* ============ hero ============ */
 .hero {
     min-height: 100svh;
@@ -1205,23 +1210,44 @@ main, .navbar {
 
 @media (max-width: 640px) {
     .nav-pill {
-        gap: 6px;
-        padding: 8px 10px;
+        gap: 8px;
+        padding: 8px 12px;
     }
 
+    /* collapse links into a dropdown behind the burger */
     .nav-links {
-        overflow-x: auto;
-        scrollbar-width: none;
+        display: none;
+        position: absolute;
+        top: calc(100% + 1px);
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        gap: 2px;
+        padding: 10px 14px 14px;
+        background: var(--bg);
+        border-bottom: 1px solid var(--border);
     }
 
-    .nav-links::-webkit-scrollbar {
-        display: none;
+    .nav-links.open {
+        display: flex;
     }
 
     .nav-links a {
-        padding: 7px 8px;
-        font-size: 0.72rem;
-        white-space: nowrap;
+        padding: 12px 10px;
+        font-size: 0.85rem;
+    }
+
+    .nav-theme-btn {
+        margin-left: auto;
+    }
+
+    .nav-burger {
+        display: grid;
+    }
+
+    /* no keyboard on phones — palette button is desktop-only */
+    .nav-palette-btn {
+        display: none;
     }
 
     .nav-iconbtn {

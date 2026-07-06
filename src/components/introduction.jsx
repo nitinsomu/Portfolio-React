@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 import Magnetic from "./Magnetic";
 
 const ROLES = [
@@ -54,22 +54,38 @@ function Introduction() {
     const typed = useTypewriter(ROLES);
     const ref = useRef(null);
     const heroRef = useRef(null);
+    const hintRef = useRef(null);
 
     // fade + shrink the hero as it scrolls away
-    const { scrollYProgress } = useScroll({
-        target: heroRef,
-        offset: ["start start", "end start"],
-    });
-    const opacity = useTransform(scrollYProgress, [0, 0.85], [1, 0]);
-    const scale = useTransform(scrollYProgress, [0, 1], [1, 0.92]);
-    const y = useTransform(scrollYProgress, [0, 1], [0, 80]);
+    useEffect(() => {
+        let raf = 0;
+        function update() {
+            raf = 0;
+            const heroH = heroRef.current?.offsetHeight || window.innerHeight;
+            const t = Math.min(window.scrollY / (heroH * 0.6), 1);
+            if (ref.current) {
+                ref.current.style.opacity = String(1 - t);
+                ref.current.style.transform = `scale(${1 - t * 0.04})`;
+            }
+            if (hintRef.current) hintRef.current.style.opacity = String(1 - t);
+        }
+        function onScroll() {
+            if (!raf) raf = requestAnimationFrame(update);
+        }
+        window.addEventListener("scroll", onScroll, { passive: true });
+        update();
+        return () => {
+            window.removeEventListener("scroll", onScroll);
+            cancelAnimationFrame(raf);
+        };
+    }, []);
 
     return (
         <section id="home" className="hero" ref={heroRef}>
+            {/* outer div: scroll-linked fade; inner div: entrance animation.
+                They must be separate or the entrance animation pins opacity. */}
+            <div className="hero-inner" ref={ref}>
             <motion.div
-                className="hero-inner"
-                ref={ref}
-                style={{ opacity, scale, y }}
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
@@ -117,8 +133,9 @@ function Introduction() {
                     </Magnetic>
                 </div>
             </motion.div>
+            </div>
 
-            <div className="scroll-hint" aria-hidden="true">
+            <div className="scroll-hint" ref={hintRef} aria-hidden="true">
                 <span className="scroll-mouse" />
                 scroll
             </div>

@@ -4,10 +4,10 @@ import TiltCard from "./TiltCard";
 import images from "../assets/images";
 
 const THEMES = [
-    { name: "neon", a: "#22d3ee", b: "#a78bfa" },
-    { name: "mint", a: "#34d399", b: "#22d3ee" },
-    { name: "sunset", a: "#fbbf24", b: "#f87171" },
-    { name: "candy", a: "#f472b6", b: "#a78bfa" },
+    { name: "cyan", a: "#22d3ee" },
+    { name: "mint", a: "#34d399" },
+    { name: "amber", a: "#fbbf24" },
+    { name: "pink", a: "#f472b6" },
 ];
 
 const SKILLS = Object.entries(images);
@@ -133,14 +133,11 @@ function Bento() {
                                 <button
                                     key={t.name}
                                     className="theme-swatch"
-                                    style={{ background: `linear-gradient(120deg, ${t.a}, ${t.b})` }}
+                                    style={{ background: t.a }}
                                     aria-label={`${t.name} theme`}
                                     title={t.name}
                                     onClick={() => {
-                                        const root = document.documentElement;
-                                        root.style.setProperty("--cyan", t.a);
-                                        root.style.setProperty("--violet", t.b);
-                                        root.style.setProperty("--gradient", `linear-gradient(100deg, ${t.a}, ${t.b})`);
+                                        document.documentElement.style.setProperty("--accent", t.a);
                                     }}
                                 />
                             ))}

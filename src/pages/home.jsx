@@ -1,4 +1,3 @@
-import Background from '../components/Background'
 import MatrixRain from '../components/MatrixRain'
 import Header from '../components/header'
 import Introduction from '../components/introduction'
@@ -10,7 +9,6 @@ import Footer from '../components/footer'
 export default function Home() {
     return (
         <div className="page">
-            <Background />
             <MatrixRain />
             <Header />
             <main>

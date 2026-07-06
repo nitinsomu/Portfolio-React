@@ -2,17 +2,41 @@ import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import TiltCard from "./TiltCard";
 import images from "../assets/images";
+import awsBadge from "../assets/logos/aws-ccp-badge.png";
 
 const THEMES = [
-    { name: "neon", a: "#22d3ee", b: "#a78bfa" },
-    { name: "mint", a: "#34d399", b: "#22d3ee" },
-    { name: "sunset", a: "#fbbf24", b: "#f87171" },
-    { name: "candy", a: "#f472b6", b: "#a78bfa" },
+    { name: "cyan", a: "#22d3ee" },
+    { name: "mint", a: "#34d399" },
+    { name: "amber", a: "#fbbf24" },
+    { name: "pink", a: "#f472b6" },
 ];
 
 const SKILLS = Object.entries(images);
 const ROW_A = SKILLS.slice(0, Math.ceil(SKILLS.length / 2));
 const ROW_B = SKILLS.slice(Math.ceil(SKILLS.length / 2));
+
+// Live GitHub stats, cached for an hour so the unauthenticated
+// rate limit (60/hr) is never a problem.
+function useGithub() {
+    const [stats, setStats] = useState(null);
+    useEffect(() => {
+        const cached = sessionStorage.getItem("gh-stats");
+        if (cached) {
+            const { at, data } = JSON.parse(cached);
+            if (Date.now() - at < 3600_000) return setStats(data);
+        }
+        fetch("https://api.github.com/users/nitinsomu")
+            .then((r) => (r.ok ? r.json() : null))
+            .then((d) => {
+                if (!d) return;
+                const data = { repos: d.public_repos, followers: d.followers };
+                sessionStorage.setItem("gh-stats", JSON.stringify({ at: Date.now(), data }));
+                setStats(data);
+            })
+            .catch(() => {});
+    }, []);
+    return stats;
+}
 
 function Clock() {
     const [now, setNow] = useState(new Date());
@@ -41,6 +65,7 @@ const tile = (i) => ({
 });
 
 function Bento() {
+    const gh = useGithub();
     return (
         <section id="about" className="section">
             <motion.h2
@@ -88,7 +113,11 @@ function Bento() {
                         <a href="https://github.com/nitinsomu" target="_blank" rel="noopener noreferrer" className="bento-linkfill">
                             <p className="bento-label">// github</p>
                             <p className="bento-strong">@nitinsomu ↗</p>
-                            <p className="bento-dim">code lives here</p>
+                            <p className="bento-dim">
+                                {gh
+                                    ? `${gh.repos} repos · ${gh.followers} followers`
+                                    : "code lives here"}
+                            </p>
                         </a>
                     </TiltCard>
                 </motion.div>
@@ -102,7 +131,7 @@ function Bento() {
                             className="bento-linkfill bento-cert-row"
                         >
                             <img
-                                src="https://d1.awsstatic.com/training-and-certification/certification-badges/AWS-Certified-Cloud-Practitioner_badge.634f8a21af2e0e956ed8905a72366146ba22b74c.png"
+                                src={awsBadge}
                                 alt="AWS Certified Cloud Practitioner"
                                 loading="lazy"
                             />
@@ -119,7 +148,7 @@ function Bento() {
                     <TiltCard className="bento-inner">
                         <a href="https://linkedin.com/in/nitinsomu" target="_blank" rel="noopener noreferrer" className="bento-linkfill">
                             <p className="bento-label">// linkedin</p>
-                            <p className="bento-strong">in/nitinsomu ↗</p>
+                            <p className="bento-strong">nitinsomu ↗</p>
                             <p className="bento-dim">let&apos;s connect</p>
                         </a>
                     </TiltCard>
@@ -133,14 +162,11 @@ function Bento() {
                                 <button
                                     key={t.name}
                                     className="theme-swatch"
-                                    style={{ background: `linear-gradient(120deg, ${t.a}, ${t.b})` }}
+                                    style={{ background: t.a }}
                                     aria-label={`${t.name} theme`}
                                     title={t.name}
                                     onClick={() => {
-                                        const root = document.documentElement;
-                                        root.style.setProperty("--cyan", t.a);
-                                        root.style.setProperty("--violet", t.b);
-                                        root.style.setProperty("--gradient", `linear-gradient(100deg, ${t.a}, ${t.b})`);
+                                        document.documentElement.style.setProperty("--accent", t.a);
                                     }}
                                 />
                             ))}

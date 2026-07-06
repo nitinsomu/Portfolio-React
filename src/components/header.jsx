@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { motion, useScroll, useSpring } from "framer-motion";
+import { track } from "../lib/track";
 
 const SECTIONS = [
     { id: "home", label: "Home" },
@@ -11,8 +12,26 @@ const SECTIONS = [
 
 function Header() {
     const [active, setActive] = useState("home");
+    const [theme, setTheme] = useState(() => localStorage.getItem("theme") || "dark");
     const { scrollYProgress } = useScroll();
     const progress = useSpring(scrollYProgress, { stiffness: 120, damping: 28 });
+
+    useEffect(() => {
+        document.documentElement.dataset.theme = theme;
+        localStorage.setItem("theme", theme);
+    }, [theme]);
+
+    useEffect(() => {
+        const toggle = () => {
+            setTheme((t) => {
+                const next = t === "dark" ? "light" : "dark";
+                track("theme_change", { theme: next });
+                return next;
+            });
+        };
+        window.addEventListener("theme-toggle", toggle);
+        return () => window.removeEventListener("theme-toggle", toggle);
+    }, []);
 
     useEffect(() => {
         const observer = new IntersectionObserver(
@@ -37,10 +56,11 @@ function Header() {
 
     return (
         <>
+            <a className="skip-link" href="#terminal">skip to content</a>
             <motion.div className="scroll-progress" style={{ scaleX: progress }} />
             <nav className="navbar" aria-label="Main navigation">
                 <div className="nav-pill">
-                    <a href="#home" className="nav-logo" onClick={(e) => go(e, "home")}>
+                    <a href="#home" className="nav-logo" onClick={(e) => go(e, "home")} aria-label="Home">
                         <span className="nav-logo-mark">ns</span>
                     </a>
                     <ul className="nav-links">
@@ -49,6 +69,7 @@ function Header() {
                                 <a
                                     href={`#${id}`}
                                     className={active === id ? "active" : ""}
+                                    aria-current={active === id ? "true" : undefined}
                                     onClick={(e) => go(e, id)}
                                 >
                                     {label}
@@ -56,6 +77,22 @@ function Header() {
                             </li>
                         ))}
                     </ul>
+                    <button
+                        className="nav-iconbtn"
+                        onClick={() => window.dispatchEvent(new CustomEvent("palette-open"))}
+                        aria-label="Open command palette"
+                        title="Command palette (Ctrl+K)"
+                    >
+                        ⌘K
+                    </button>
+                    <button
+                        className="nav-iconbtn"
+                        onClick={() => window.dispatchEvent(new CustomEvent("theme-toggle"))}
+                        aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} theme`}
+                        title="Toggle theme"
+                    >
+                        {theme === "dark" ? "☀" : "☾"}
+                    </button>
                 </div>
             </nav>
         </>

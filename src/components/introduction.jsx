@@ -6,7 +6,7 @@ const ROLES = [
     "RAG pipelines",
     "agentic applications",
     "backend systems",
-    "machine learning",
+    "machine learning pipelines",
     "cloud infrastructure",
 ];
 
@@ -33,26 +33,15 @@ function useTypewriter(words) {
     return text;
 }
 
-// Hovered letters "go dark": the gradient fill drops out to the page
-// background and a neon outline takes over. Every letter carries its
-// own slice of the shared gradient (background-clip: text breaks when
-// separately-styled spans sit inside one clipped parent).
+// Hovered letters flip to the accent color.
 function ScatterName({ text }) {
-    const n = text.length;
     return (
         <span className="hero-name" aria-label={text}>
             {text.split("").map((ch, i) =>
                 ch === " " ? (
                     <span key={i}>&nbsp;</span>
                 ) : (
-                    <span
-                        key={i}
-                        className="hero-letter"
-                        style={{
-                            backgroundSize: `${n * 100}% 100%`,
-                            backgroundPosition: `${(i / (n - 1)) * 100}% 0`,
-                        }}
-                    >
+                    <span key={i} className="hero-letter">
                         {ch}
                     </span>
                 )
@@ -75,20 +64,8 @@ function Introduction() {
     const scale = useTransform(scrollYProgress, [0, 1], [1, 0.92]);
     const y = useTransform(scrollYProgress, [0, 1], [0, 80]);
 
-    // mouse parallax layers
-    function onMove(e) {
-        const el = ref.current;
-        if (!el) return;
-        const x = e.clientX / window.innerWidth - 0.5;
-        const yy = e.clientY / window.innerHeight - 0.5;
-        el.style.setProperty("--px", `${x * -18}px`);
-        el.style.setProperty("--py", `${yy * -14}px`);
-        el.style.setProperty("--px2", `${x * 10}px`);
-        el.style.setProperty("--py2", `${yy * 8}px`);
-    }
-
     return (
-        <section id="home" className="hero" ref={heroRef} onMouseMove={onMove}>
+        <section id="home" className="hero" ref={heroRef}>
             <motion.div
                 className="hero-inner"
                 ref={ref}
@@ -97,23 +74,23 @@ function Introduction() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
             >
-                <div className="hero-badge parallax-far">
+                <div className="hero-badge">
                     <span className="pulse-dot" />
                     Technology Analyst @ Morgan Stanley
                 </div>
 
-                <h1 className="hero-title parallax-near">
+                <h1 className="hero-title">
                     <span className="hero-hello">Hi, I&apos;m</span>
                     <ScatterName text="Nitin Somu" />
                 </h1>
 
-                <p className="hero-typeline parallax-far">
+                <p className="hero-typeline">
                     <span className="prompt">$</span> I build{" "}
                     <span className="typed">{typed}</span>
                     <span className="caret" aria-hidden="true" />
                 </p>
 
-                <p className="hero-info parallax-far">
+                <p className="hero-info">
                     Computer science engineer who likes hard problems and clean
                     systems — building RAG and agentic AI applications with
                     Python, on strong foundations in data structures,
@@ -130,7 +107,7 @@ function Introduction() {
                                 document.getElementById("about")?.scrollIntoView({ behavior: "smooth" });
                             }}
                         >
-                            See my work
+                            About me
                         </a>
                     </Magnetic>
                     <Magnetic>

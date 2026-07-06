@@ -1,5 +1,9 @@
+import github from "./logos/github.png";
+import linkedin from "./logos/linkedin.svg";
+
 const icons = {
-    "Linkedin" : "https://icon.icepanel.io/Technology/svg/LinkedIn.svg",
-    "Github" : "https://img.icons8.com/ios11/512/FFFFFF/github.png"
-}
+    "Linkedin": linkedin,
+    "Github": github,
+};
+
 export default icons;

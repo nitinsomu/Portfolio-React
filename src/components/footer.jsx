@@ -2,6 +2,8 @@ import React from "react";
 import { motion } from "framer-motion";
 import icons from "../assets/icons";
 import Magnetic from "./Magnetic";
+import { toast } from "./ToastHost";
+import { track } from "../lib/track";
 
 function Footer() {
     const year = new Date().getFullYear();
@@ -24,11 +26,21 @@ function Footer() {
                 </p>
                 <div className="contact-mail-wrap">
                     <Magnetic>
-                        <a href="mailto:nitin.somu13@gmail.com" className="btn btn-primary contact-mail">
+                        <button
+                            className="btn btn-primary contact-mail"
+                            onClick={async () => {
+                                await navigator.clipboard.writeText("nitin.somu13@gmail.com");
+                                toast("email copied to clipboard");
+                                track("email_copy", { source: "contact" });
+                            }}
+                        >
                             nitin.somu13@gmail.com
-                        </a>
+                        </button>
                     </Magnetic>
                 </div>
+                <a href="mailto:nitin.somu13@gmail.com" className="contact-mailto">
+                    or open your mail app ↗
+                </a>
                 <div className="contact-socials">
                     <a href="https://github.com/nitinsomu" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
                         <img className="icon" src={icons.Github} alt="GitHub" />

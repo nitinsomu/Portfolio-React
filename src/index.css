@@ -65,7 +65,9 @@
 
 html {
     scroll-behavior: smooth;
-    overflow-x: hidden;
+    /* clip, not hidden: hidden creates a scroll container and kills
+       position: sticky (experience deck); clip only clips */
+    overflow-x: clip;
 }
 
 body {
@@ -73,7 +75,7 @@ body {
     color: var(--text);
     font-family: var(--font-sans);
     line-height: 1.6;
-    overflow-x: hidden;
+    overflow-x: clip;
     -webkit-font-smoothing: antialiased;
 }
 

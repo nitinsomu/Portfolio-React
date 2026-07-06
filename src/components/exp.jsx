@@ -1,5 +1,9 @@
 import React from "react";
 import { motion } from "framer-motion";
+import morganStanley from "../assets/logos/morgan-stanley.svg";
+import nasdaq from "../assets/logos/nasdaq.svg";
+import barclays from "../assets/logos/barclays.jpeg";
+import bosch from "../assets/logos/bosch.svg";
 
 const EXPERIENCE = [
     {
@@ -7,7 +11,7 @@ const EXPERIENCE = [
         company: "Morgan Stanley",
         location: "Bengaluru",
         duration: "Aug 2025 — Present",
-        logo: "https://upload.wikimedia.org/wikipedia/commons/3/34/Morgan_Stanley_Logo_1.svg",
+        logo: morganStanley,
         url: "https://www.morganstanley.com/",
         current: true,
     },
@@ -16,7 +20,7 @@ const EXPERIENCE = [
         company: "Nasdaq",
         location: "Bengaluru",
         duration: "Jan — Jun 2025",
-        logo: "https://upload.wikimedia.org/wikipedia/commons/7/76/NASDAQ_logo.svg",
+        logo: nasdaq,
         url: "https://www.nasdaq.com/",
     },
     {
@@ -24,7 +28,7 @@ const EXPERIENCE = [
         company: "Barclays",
         location: "Pune",
         duration: "Jun — Jul 2024",
-        logo: "https://upload.wikimedia.org/wikipedia/commons/5/5c/Barclays_logo.jpeg",
+        logo: barclays,
         url: "https://home.barclays/",
     },
     {
@@ -32,7 +36,7 @@ const EXPERIENCE = [
         company: "Bosch",
         location: "Bengaluru",
         duration: "Aug — Sep 2023",
-        logo: "https://upload.wikimedia.org/wikipedia/commons/1/16/Bosch-logo.svg",
+        logo: bosch,
         url: "https://www.bosch.in/",
     },
 ];

@@ -21,18 +21,26 @@ const HELP = [
     "  and read what's inside. explorers are rewarded.",
 ];
 
+// Box borders are generated from the text so they always line up.
+// ASCII only: emoji and box-drawing glyphs render at different widths
+// than the font's latin subset and bend the borders.
+function boxify(lines) {
+    const width = Math.max(...lines.map((l) => l.length));
+    const rule = `+${"-".repeat(width + 2)}+`;
+    return [rule, ...lines.map((l) => `| ${l.padEnd(width)} |`), rule];
+}
+
 const TREASURE = [
-    "┌──────────────────────────────────────────────┐",
-    "│  🏆 QUEST COMPLETE                           │",
-    "│                                              │",
-    "│  you found the treasure. most visitors      │",
-    "│  never even open the terminal — you         │",
-    "│  explored, dug for hidden files and         │",
-    "│  cracked the lock. we'd get along.          │",
-    "│                                              │",
-    "│  mention 'open-sesame' when you email me    │",
-    "│  and you'll have my full attention.         │",
-    "└──────────────────────────────────────────────┘",
+    "🏆 QUEST COMPLETE",
+    ...boxify([
+        "you found the treasure. most visitors",
+        "never even open the terminal - you",
+        "explored, dug for hidden files and",
+        "cracked the lock. we'd get along.",
+        "",
+        "mention 'open-sesame' when you email me",
+        "and you'll have my full attention.",
+    ]),
 ];
 
 // dirs are plain objects; files are arrays of lines

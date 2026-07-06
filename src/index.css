@@ -65,6 +65,7 @@
 
 html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
 }
 
 body {
@@ -340,8 +341,12 @@ main, .navbar {
 }
 
 .btn-primary:hover {
-    background: #fff;
+    filter: brightness(1.15);
     transform: translateY(-1px);
+}
+
+:root[data-theme="light"] .btn-primary:hover {
+    filter: brightness(1.6);
 }
 
 .btn-ghost {
@@ -506,6 +511,12 @@ main, .navbar {
     grid-template-columns: repeat(4, 1fr);
     grid-auto-rows: minmax(150px, auto);
     gap: 12px;
+}
+
+/* grid items must be allowed to shrink below their content width,
+   otherwise the marquee's max-content track blows the grid out */
+.bento > * {
+    min-width: 0;
 }
 
 .bento-about { grid-column: span 2; grid-row: span 2; }
@@ -819,6 +830,28 @@ main, .navbar {
     font-family: var(--font-mono);
     font-size: 0.85rem;
     line-height: 1.75;
+    /* always-dark scrollbar to match the always-dark terminal (Firefox) */
+    scrollbar-width: thin;
+    scrollbar-color: #2e2e34 #0c0c0e;
+}
+
+/* always-dark scrollbar (WebKit) */
+.terminal-body::-webkit-scrollbar {
+    width: 10px;
+}
+
+.terminal-body::-webkit-scrollbar-track {
+    background: #0c0c0e;
+}
+
+.terminal-body::-webkit-scrollbar-thumb {
+    background: #2e2e34;
+    border-radius: 5px;
+    border: 2px solid #0c0c0e;
+}
+
+.terminal-body::-webkit-scrollbar-thumb:hover {
+    background: #3d3d45;
 }
 
 .tline {
@@ -932,6 +965,11 @@ main, .navbar {
     object-fit: contain;
 }
 
+/* the GitHub mark is a white PNG — flip it to black in light mode */
+:root[data-theme="light"] .icon[alt="GitHub"] {
+    filter: invert(1);
+}
+
 .footer-bar {
     display: flex;
     justify-content: space-between;
@@ -1032,6 +1070,21 @@ main, .navbar {
     max-height: 320px;
     overflow-y: auto;
     padding: 6px;
+    scrollbar-width: thin;
+    scrollbar-color: var(--border-strong) transparent;
+}
+
+.palette-list::-webkit-scrollbar {
+    width: 8px;
+}
+
+.palette-list::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.palette-list::-webkit-scrollbar-thumb {
+    background: var(--border-strong);
+    border-radius: 4px;
 }
 
 .palette-item {
@@ -1151,9 +1204,28 @@ main, .navbar {
 }
 
 @media (max-width: 640px) {
+    .nav-pill {
+        gap: 6px;
+        padding: 8px 10px;
+    }
+
+    .nav-links {
+        overflow-x: auto;
+        scrollbar-width: none;
+    }
+
+    .nav-links::-webkit-scrollbar {
+        display: none;
+    }
+
     .nav-links a {
-        padding: 7px 9px;
-        font-size: 0.74rem;
+        padding: 7px 8px;
+        font-size: 0.72rem;
+        white-space: nowrap;
+    }
+
+    .nav-iconbtn {
+        flex-shrink: 0;
     }
 
     .section {

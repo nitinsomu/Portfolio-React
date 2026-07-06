@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import TiltCard from "./TiltCard";
 import images from "../assets/images";
+import awsBadge from "../assets/logos/aws-ccp-badge.png";
 
 const THEMES = [
     { name: "cyan", a: "#22d3ee" },
@@ -130,7 +131,7 @@ function Bento() {
                             className="bento-linkfill bento-cert-row"
                         >
                             <img
-                                src="https://d1.awsstatic.com/training-and-certification/certification-badges/AWS-Certified-Cloud-Practitioner_badge.634f8a21af2e0e956ed8905a72366146ba22b74c.png"
+                                src={awsBadge}
                                 alt="AWS Certified Cloud Practitioner"
                                 loading="lazy"
                             />
@@ -147,7 +148,7 @@ function Bento() {
                     <TiltCard className="bento-inner">
                         <a href="https://linkedin.com/in/nitinsomu" target="_blank" rel="noopener noreferrer" className="bento-linkfill">
                             <p className="bento-label">// linkedin</p>
-                            <p className="bento-strong">in/nitinsomu ↗</p>
+                            <p className="bento-strong">nitinsomu ↗</p>
                             <p className="bento-dim">let&apos;s connect</p>
                         </a>
                     </TiltCard>

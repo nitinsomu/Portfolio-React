@@ -1,27 +1,51 @@
+import c from "./logos/c.svg";
+import cpp from "./logos/cpp.svg";
+import python from "./logos/python.svg";
+import java from "./logos/java.svg";
+import aws from "./logos/aws.png";
+import html5 from "./logos/html5.svg";
+import css3 from "./logos/css3.svg";
+import javascript from "./logos/javascript.svg";
+import react from "./logos/react.svg";
+import flask from "./logos/flask.png";
+import pandas from "./logos/pandas.png";
+import scikitLearn from "./logos/scikit-learn.svg";
+import mysql from "./logos/mysql.svg";
+import docker from "./logos/docker.svg";
+import kubernetes from "./logos/kubernetes.svg";
+import grafana from "./logos/grafana.svg";
+import prometheus from "./logos/prometheus.svg";
+import git from "./logos/git.svg";
+import claude from "./logos/claude.svg";
+import llamaindex from "./logos/llamaindex.ico";
+import phoenix from "./logos/phoenix.ico";
+import deepeval from "./logos/deepeval.png";
+import snowflake from "./logos/snowflake.svg";
+
 const images = {
-    "C" : "https://icon.icepanel.io/Technology/svg/C.svg",
-    "C++" : "https://icon.icepanel.io/Technology/svg/C%2B%2B-%28CPlusPlus%29.svg",
-    "Python" : "https://icon.icepanel.io/Technology/svg/Python.svg",
-    "Java" : "https://icon.icepanel.io/Technology/svg/Java.svg",
-    "AWS" : "https://icon.icepanel.io/Technology/png-shadow-512/AWS.png",
-    "HTML" : "https://icon.icepanel.io/Technology/svg/HTML5.svg",
-    "CSS" : "https://icon.icepanel.io/Technology/svg/CSS3.svg",
-    "JavaScript" : "https://icon.icepanel.io/Technology/svg/JavaScript.svg",
-    "React" : "https://icon.icepanel.io/Technology/svg/React.svg",
-    "Flask" : "https://icon.icepanel.io/Technology/png-shadow-512/Flask.png",
-    "pandas" : "https://icon.icepanel.io/Technology/png-shadow-512/Pandas.png",
-    "scikit-learn" : "https://icon.icepanel.io/Technology/svg/scikit-learn.svg",
-    "MySQL" : "https://icon.icepanel.io/Technology/svg/MySQL.svg",
-    "Docker" : "https://icon.icepanel.io/Technology/svg/Docker.svg",
-    "Kubernetes" : "https://icon.icepanel.io/Technology/svg/Kubernetes.svg",
-    "Grafana" : "https://icon.icepanel.io/Technology/svg/Grafana.svg",
-    "Prometheus" : "https://icon.icepanel.io/Technology/svg/Prometheus.svg",
-    "Git" : "https://icon.icepanel.io/Technology/svg/Git.svg",
-    "Claude Agent SDK" : "https://cdn.simpleicons.org/claude",
-    "LlamaIndex" : "https://www.llamaindex.ai/favicon.ico",
-    "Phoenix" : "https://raw.githubusercontent.com/Arize-ai/phoenix/main/app/static/favicon.ico",
-    "DeepEval" : null,
-    "Snowflake Cortex" : "https://cdn.simpleicons.org/snowflake"
-}
+    "C": c,
+    "C++": cpp,
+    "Python": python,
+    "Java": java,
+    "AWS": aws,
+    "HTML": html5,
+    "CSS": css3,
+    "JavaScript": javascript,
+    "React": react,
+    "Flask": flask,
+    "pandas": pandas,
+    "scikit-learn": scikitLearn,
+    "MySQL": mysql,
+    "Docker": docker,
+    "Kubernetes": kubernetes,
+    "Grafana": grafana,
+    "Prometheus": prometheus,
+    "Git": git,
+    "Claude Agent SDK": claude,
+    "LlamaIndex": llamaindex,
+    "Phoenix": phoenix,
+    "DeepEval": deepeval,
+    "Snowflake Cortex": snowflake,
+};
 
 export default images;

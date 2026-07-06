@@ -6,7 +6,7 @@ const ROLES = [
     "RAG pipelines",
     "agentic applications",
     "backend systems",
-    "machine learning",
+    "machine learning pipelines",
     "cloud infrastructure",
 ];
 
@@ -107,7 +107,7 @@ function Introduction() {
                                 document.getElementById("about")?.scrollIntoView({ behavior: "smooth" });
                             }}
                         >
-                            See my work
+                            About me
                         </a>
                     </Magnetic>
                     <Magnetic>

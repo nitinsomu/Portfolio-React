@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
+import { track } from "../lib/track";
 
 const BANNER = [
     "nitin@portfolio:~$ ./welcome.sh",
@@ -116,6 +117,7 @@ function Terminal() {
                 return [arg || ""];
             case "matrix":
                 window.dispatchEvent(new CustomEvent("matrix-toggle"));
+                track("matrix_toggle", { source: "terminal" });
                 return ["matrix mode toggled. wake up, neo."];
             case "ls": {
                 const all = parts.includes("-a");
@@ -154,6 +156,7 @@ function Terminal() {
             case "cat": {
                 const f = arg.replace(/^\.\//, "");
                 const node = here[f];
+                if (node === TREASURE) track("quest_complete");
                 if (Array.isArray(node)) return node;
                 if (isDir(node)) return [`cat: ${f}: is a directory`];
                 return [`cat: ${f || "file"}: no such file`];
@@ -187,6 +190,7 @@ function Terminal() {
                 if (arg === "open-sesame") {
                     if (unlocked) return ["secrets/ is already unlocked."];
                     setUnlocked(true);
+                    track("quest_unlock");
                     return ["🔓 secrets/ unlocked. one step closer to the treasure...", "(cd secrets)"];
                 }
                 return [`unlock: wrong key${arg ? `: '${arg}'` : ""}. keep looking.`];
@@ -254,7 +258,7 @@ function Terminal() {
                     <span className="tdot green" />
                     <span className="terminal-title">nitin@portfolio — zsh {unlocked && "· 🔓"}</span>
                 </div>
-                <div className="terminal-body" ref={bodyRef}>
+                <div className="terminal-body" ref={bodyRef} role="log" aria-live="polite">
                     {lines.map((line, i) => (
                         <div
                             key={i}

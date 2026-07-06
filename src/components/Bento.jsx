@@ -14,6 +14,29 @@ const SKILLS = Object.entries(images);
 const ROW_A = SKILLS.slice(0, Math.ceil(SKILLS.length / 2));
 const ROW_B = SKILLS.slice(Math.ceil(SKILLS.length / 2));
 
+// Live GitHub stats, cached for an hour so the unauthenticated
+// rate limit (60/hr) is never a problem.
+function useGithub() {
+    const [stats, setStats] = useState(null);
+    useEffect(() => {
+        const cached = sessionStorage.getItem("gh-stats");
+        if (cached) {
+            const { at, data } = JSON.parse(cached);
+            if (Date.now() - at < 3600_000) return setStats(data);
+        }
+        fetch("https://api.github.com/users/nitinsomu")
+            .then((r) => (r.ok ? r.json() : null))
+            .then((d) => {
+                if (!d) return;
+                const data = { repos: d.public_repos, followers: d.followers };
+                sessionStorage.setItem("gh-stats", JSON.stringify({ at: Date.now(), data }));
+                setStats(data);
+            })
+            .catch(() => {});
+    }, []);
+    return stats;
+}
+
 function Clock() {
     const [now, setNow] = useState(new Date());
     useEffect(() => {
@@ -41,6 +64,7 @@ const tile = (i) => ({
 });
 
 function Bento() {
+    const gh = useGithub();
     return (
         <section id="about" className="section">
             <motion.h2
@@ -88,7 +112,11 @@ function Bento() {
                         <a href="https://github.com/nitinsomu" target="_blank" rel="noopener noreferrer" className="bento-linkfill">
                             <p className="bento-label">// github</p>
                             <p className="bento-strong">@nitinsomu ↗</p>
-                            <p className="bento-dim">code lives here</p>
+                            <p className="bento-dim">
+                                {gh
+                                    ? `${gh.repos} repos · ${gh.followers} followers`
+                                    : "code lives here"}
+                            </p>
                         </a>
                     </TiltCard>
                 </motion.div>

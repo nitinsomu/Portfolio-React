@@ -13,10 +13,54 @@
     --radius: 8px;
 }
 
+:root[data-theme="light"] {
+    --bg: #fafafa;
+    --surface: #ffffff;
+    --surface-hover: #f0f0f2;
+    --border: #e4e4e8;
+    --border-strong: #cfcfd6;
+    --text: #131316;
+    --text-dim: #5f5f6b;
+}
+
+:root[data-theme="light"] .page::before {
+    background-image:
+        linear-gradient(rgba(0, 0, 0, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 0, 0, 0.04) 1px, transparent 1px);
+}
+
+:root[data-theme="light"] .navbar {
+    background: rgba(250, 250, 250, 0.85);
+}
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+
+:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+    border-radius: 4px;
+}
+
+.skip-link {
+    position: fixed;
+    top: -100px;
+    left: 12px;
+    z-index: 300;
+    padding: 10px 16px;
+    background: var(--text);
+    color: var(--bg);
+    border-radius: 6px;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    transition: top 0.15s;
+}
+
+.skip-link:focus {
+    top: 12px;
 }
 
 html {
@@ -146,6 +190,27 @@ main, .navbar {
 .nav-links a.active {
     color: var(--text);
     background: var(--surface-hover);
+}
+
+.nav-iconbtn {
+    display: grid;
+    place-items: center;
+    min-width: 34px;
+    height: 30px;
+    padding: 0 8px;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--text-dim);
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    cursor: pointer;
+    transition: color 0.15s, border-color 0.15s;
+}
+
+.nav-iconbtn:hover {
+    color: var(--text);
+    border-color: var(--border-strong);
 }
 
 /* ============ hero ============ */
@@ -712,10 +777,10 @@ main, .navbar {
     color: var(--text);
 }
 
-/* ============ terminal ============ */
+/* ============ terminal (always dark, even in light theme) ============ */
 .terminal {
     border-radius: var(--radius);
-    border: 1px solid var(--border);
+    border: 1px solid #232327;
     background: #0c0c0e;
     overflow: hidden;
     cursor: text;
@@ -726,8 +791,8 @@ main, .navbar {
     align-items: center;
     gap: 8px;
     padding: 11px 16px;
-    border-bottom: 1px solid var(--border);
-    background: var(--surface);
+    border-bottom: 1px solid #232327;
+    background: #131316;
 }
 
 .tdot {
@@ -744,7 +809,7 @@ main, .navbar {
     margin-left: 10px;
     font-family: var(--font-mono);
     font-size: 0.74rem;
-    color: var(--text-dim);
+    color: #8b8b96;
 }
 
 .terminal-body {
@@ -757,13 +822,13 @@ main, .navbar {
 }
 
 .tline {
-    color: var(--text-dim);
+    color: #9a9aa6;
     white-space: pre-wrap;
     word-break: break-word;
 }
 
 .tline-cmd {
-    color: var(--text);
+    color: #f2f2f4;
 }
 
 .tline-input {
@@ -782,7 +847,7 @@ main, .navbar {
     background: transparent;
     border: none;
     outline: none;
-    color: var(--text);
+    color: #f2f2f4;
     font-family: var(--font-mono);
     font-size: 0.85rem;
     caret-color: var(--accent);
@@ -911,6 +976,167 @@ main, .navbar {
 .coming-sub {
     color: var(--text-dim);
     margin-bottom: 20px;
+}
+
+/* ============ command palette ============ */
+.palette-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 400;
+    background: rgba(0, 0, 0, 0.55);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 15vh 20px 0;
+}
+
+.palette {
+    width: 100%;
+    max-width: 560px;
+    border-radius: var(--radius);
+    border: 1px solid var(--border-strong);
+    background: var(--surface);
+    overflow: hidden;
+    box-shadow: 0 16px 60px rgba(0, 0, 0, 0.4);
+}
+
+.palette-inputrow {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--border);
+}
+
+.palette-inputrow input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--text);
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+}
+
+.palette-inputrow kbd {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    color: var(--text-dim);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 2px 6px;
+}
+
+.palette-list {
+    list-style: none;
+    max-height: 320px;
+    overflow-y: auto;
+    padding: 6px;
+}
+
+.palette-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    padding: 10px 12px;
+    border: none;
+    border-radius: 6px;
+    background: transparent;
+    color: var(--text);
+    font-family: var(--font-sans);
+    font-size: 0.9rem;
+    text-align: left;
+    cursor: pointer;
+}
+
+.palette-item.active {
+    background: var(--surface-hover);
+}
+
+.palette-hint {
+    margin-left: auto;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--text-dim);
+}
+
+.palette-swatch {
+    width: 14px;
+    height: 14px;
+    border-radius: 4px;
+    flex-shrink: 0;
+}
+
+.palette-empty {
+    padding: 18px 14px;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--text-dim);
+}
+
+/* ============ toast ============ */
+.toast {
+    position: fixed;
+    bottom: 28px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 500;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 11px 20px;
+    border-radius: 6px;
+    border: 1px solid var(--border-strong);
+    background: var(--surface);
+    color: var(--text);
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
+    animation: toast-in 0.2s ease-out;
+}
+
+@keyframes toast-in {
+    from { opacity: 0; transform: translate(-50%, 10px); }
+    to { opacity: 1; transform: translate(-50%, 0); }
+}
+
+/* ============ 404 ============ */
+.notfound-terminal {
+    width: 100%;
+    max-width: 560px;
+    text-align: left;
+    cursor: default;
+    margin-bottom: 16px;
+}
+
+.notfound-body {
+    height: auto;
+    min-height: 0;
+}
+
+.notfound-code {
+    color: #ff5f57;
+    font-weight: 600;
+}
+
+.contact-mailto {
+    display: inline-block;
+    margin-top: 14px;
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: var(--text-dim);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.contact-mailto:hover {
+    color: var(--text);
+}
+
+.contact-mail {
+    border: none;
+    cursor: pointer;
 }
 
 /* ============ responsive ============ */

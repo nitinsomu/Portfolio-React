@@ -8,7 +8,11 @@ import '@fontsource/space-grotesk/700.css'
 import '@fontsource/jetbrains-mono/400.css'
 import '@fontsource/jetbrains-mono/500.css'
 import '@fontsource/jetbrains-mono/600.css'
+import '@fontsource/unbounded/500.css'
+import '@fontsource/unbounded/700.css'
+import '@fontsource/unbounded/900.css'
 import './index.css'
+import './escape/escape.css'
 import { BrowserRouter } from 'react-router-dom'
 
 createRoot(document.getElementById('root')).render(

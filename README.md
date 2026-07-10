@@ -3,6 +3,10 @@
 Made this portfolio website using React.
 Deployed on https://nitinsomu.netlify.app/
 
+![Portfolio hero](docs/preview.png)
+
+![About section — bento grid](docs/preview-about.png)
+
 # Run locally
 Open the terminal and follow these steps to run the react app locally.
 
